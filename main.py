@@ -1,3 +1,5 @@
+import time
+
 import flet as ft
 
 
@@ -24,6 +26,10 @@ def main(page: ft.Page):
     def on_click_sync(e):
         status_text.value = "Processamento síncrono iniciado..."
         progress_ring.visible = True
+        page.update()
+        time.sleep(5)
+        status_text.value = "Processamento síncrono finalizado!"
+        progress_ring.visible = False
         page.update()
 
     def on_click_async(e):
@@ -80,4 +86,4 @@ def main(page: ft.Page):
     )
 
 
-ft.run(target=main)
+ft.run(main)
