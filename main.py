@@ -1,9 +1,10 @@
+import asyncio
 import time
 
 import flet as ft
 
 
-def main(page: ft.Page):
+async def main(page: ft.Page):
     page.title = "Projeto Flet"
     page.theme_mode = ft.ThemeMode.LIGHT
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -32,9 +33,13 @@ def main(page: ft.Page):
         progress_ring.visible = False
         page.update()
 
-    def on_click_async(e):
+    async def on_click_async(e):
         status_text.value = "Processamento assíncrono iniciado..."
         progress_ring.visible = True
+        page.update()
+        await asyncio.sleep(5)
+        status_text.value = "Processamento assíncrono finalizado!"
+        progress_ring.visible = False
         page.update()
 
     def on_click_test(e):
